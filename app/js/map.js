@@ -44,6 +44,6 @@ await draw()
 export default new MapView({
     container: "viewDiv",
     map: map,
-    zoom: 4,
-    center: [15, 65] // longitude, latitude
+    zoom: 11,
+    center: [103.8666, 1.30105] // longitude, latitude -- {Nicoll Highway}
 })
