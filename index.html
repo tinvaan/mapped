@@ -49,7 +49,9 @@
                         color: [255, 255, 255], // White
                         width: 1
                     }
-                }
+                },
+                attributes: {Name: "Point Graphic", Description: "This is a point"},
+                popupTemplate: {title: "{Name}", content: "{Description}"}
             }))
             map.add(graphicsLayer)
         })
