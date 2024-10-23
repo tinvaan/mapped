@@ -7,7 +7,7 @@ import markers from "./data"
 import "../css/style.css";
 
 
-const map = new Map({basemap: "topo-vector"})
+const map = new Map({basemap: "hybrid"})
 const graphicsLayer = new GraphicsLayer()
 
 async function draw() {
