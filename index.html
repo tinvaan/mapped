@@ -18,15 +18,41 @@
     <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
     <script src="https://js.arcgis.com/4.30/"></script>
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) {
+        require([
+            "esri/config",
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/Graphic",
+            "esri/layers/GraphicsLayer"
+        ], function(esriConfig, Map, MapView, Graphic, GraphicsLayer) {
             esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurG87TrIYeC1vOQr7Div9wsvAmeOLk2TaVwzqVAoUuJzrO0V5i6nS7JAzs6fd1qW-YyFvOj74qhsGses5PUj_iMl4raAvq1mHqLL3WflYMiywDzHivOgFJqjxI452L9vxtqdh_eGPs0BkCx9RlNzgPK4v_bvF-KIAKJi2e78RTBDwtpVvJZCsjzaWh1qcIM6dffwNvWukKLukzZLZt70RavU.AT1_UrZGtF7U"
+
+            const graphicsLayer = new GraphicsLayer()
+            const map = new Map({basemap: "arcgis/topographic"})
             const view = new MapView({
-                map: new Map({basemap: "arcgis/topographic"}),
+                map: map,
                 center: [-118.805, 34.027],
                 zoom: 13,
                 container: "viewDiv"
             })
-        });
+
+            graphicsLayer.add(new Graphic({
+                geometry: {
+                    type: "point",
+                    longitude: -118.80657463861,
+                    latitude: 34.0005930608889
+                },
+                symbol: {
+                    type: "simple-marker",
+                    color: [226, 119, 40],  // Orange
+                    outline: {
+                        color: [255, 255, 255], // White
+                        width: 1
+                    }
+                }
+            }))
+            map.add(graphicsLayer)
+        })
     </script>
   </head>
   <body>
