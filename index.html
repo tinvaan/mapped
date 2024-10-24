@@ -4,8 +4,165 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rainfall plotter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   </head>
   <body>
+    <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+      <!--
+        Background backdrop, show/hide based on slide-over state.
+    
+        Entering: "ease-in-out duration-500"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in-out duration-500"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+    
+      <div class="fixed inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <!--
+              Slide-over panel, show/hide based on slide-over state.
+    
+              Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+                From: "translate-x-full"
+                To: "translate-x-0"
+              Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+                From: "translate-x-0"
+                To: "translate-x-full"
+            -->
+            <div class="pointer-events-auto relative w-screen max-w-md">
+              <!--
+                Close button, show/hide based on slide-over state.
+    
+                Entering: "ease-in-out duration-500"
+                  From: "opacity-0"
+                  To: "opacity-100"
+                Leaving: "ease-in-out duration-500"
+                  From: "opacity-100"
+                  To: "opacity-0"
+              -->
+              <div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                <button type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                  <span class="absolute -inset-2.5"></span>
+                  <span class="sr-only">Close panel</span>
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+    
+              <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                <div class="px-4 sm:px-6">
+                  <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">
+                    Filter properties
+                  </h2>
+                </div>
+                <div class="relative mt-6 flex-1 px-4 sm:px-6">
+                  <div class="relative flex flex-col rounded-xl bg-white shadow">
+                    <nav class="flex min-w-[240px] flex-col gap-1 p-2">
+                      <div
+                        role="button"
+                        class="flex w-full items-center rounded-lg p-0 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+                      >
+                        <label
+                          for="check-vertical-list-group"
+                          class="flex w-full cursor-pointer items-center px-3 py-2"
+                        >
+                          <div class="inline-flex items-center">
+                            <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group">
+                              <input type="checkbox"
+                                class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
+                                id="check-vertical-list-group" />
+                              <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+                                  stroke="currentColor" stroke-width="1">
+                                  <path fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                                </svg>
+                              </span>
+                            </label>
+                            <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-vertical-list-group">
+                              Rainfall
+                            </label>
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        role="button"
+                        class="flex w-full items-center rounded-lg p-0 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+                      >
+                        <label
+                          for="check-vertical-list-group2"
+                          class="flex w-full cursor-pointer items-center px-3 py-2"
+                        >
+                          <div class="inline-flex items-center">
+                            <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group2">
+                              <input type="checkbox"
+                                class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
+                                id="check-vertical-list-group2" />
+                              <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+                                  stroke="currentColor" stroke-width="1">
+                                  <path fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                                </svg>
+                              </span>
+                            </label>
+                            <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-vertical-list-group2">
+                              Relative Humidity
+                            </label>
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        role="button"
+                        class="flex w-full items-center rounded-lg p-0 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+                      >
+                        <label
+                          for="check-vertical-list-group3"
+                          class="flex w-full cursor-pointer items-center px-3 py-2"
+                        >
+                          <div class="inline-flex items-center">
+                            <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group3">
+                              <input type="checkbox"
+                                class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
+                                id="check-vertical-list-group3" />
+                              <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+                                  stroke="currentColor" stroke-width="1">
+                                  <path fill-rule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clip-rule="evenodd"></path>
+                                </svg>
+                              </span>
+                            </label>
+                            <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="check-vertical-list-group3">
+                              Air Temperature
+                            </label>
+                          </div>
+                        </label>
+                      </div>
+                    </nav>
+                  </div>
+
+                  <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">Submit</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="viewDiv"></div>
     <script type="module" src="./app/js/map.js"></script>
   </body>
