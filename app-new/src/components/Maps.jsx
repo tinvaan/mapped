@@ -76,7 +76,7 @@ export default function MapArea() {
         zoom: 11,
         center: [103.8666, 1.30105] // longitude, latitude -- {Nicoll Highway}
       })
-      return () => view && view.destroy()
+      return () => view
     }
   }, [])
 
