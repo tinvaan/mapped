@@ -10,8 +10,8 @@ import "../css/style.css";
 const map = new Map({basemap: "hybrid"})
 const graphicsLayer = new GraphicsLayer()
 
-async function draw() {
-    const points = await markers.populate('rainfall')
+async function draw(points) {
+    // const points = await markers.populate('rainfall')
 
     for (let point of points) {
         graphicsLayer.add(new Graphic({
@@ -40,7 +40,38 @@ async function draw() {
     return map
 }
 
-await draw()
+export async function populate(airTemp, humidity, rainfall) {
+    const points = []
+    let ats, hmd, rfall
+
+    if (airTemp) {
+        ats = await markers.populate('air-temperature')
+    }
+
+    if (humidity) {
+        hmd = await markers.populate('relative-humidity')
+    }
+
+    if (rainfall) {
+        rfall = await markers.populate('rainfall')
+    }
+
+    points.push(...ats)
+    points.push(...hmd)
+    points.push(...rfall)
+    return points
+}
+
+export async function onSubmit() {
+    const points = await populate(
+        document.getElementById('airTemp'),
+        document.getElementById('humidity'),
+        document.getElementById('rainfall')
+    )
+    await draw(points)
+}
+
+window.onSubmit = onSubmit
 export default new MapView({
     container: "viewDiv",
     map: map,
