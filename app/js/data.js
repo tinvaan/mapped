@@ -9,7 +9,6 @@ markers.populate = async function (property) {
     if (property === 'rainfall' || property === 'relative-humidity') {
         let rs = await fetch(host + route + property)
         rs = await rs.json()
-        console.log(JSON.stringify(rs, null, 2))
 
         const time = rs.data.readings[0].timestamp
         const unit = rs.data.readings[0].readingUnit == "percentage" ? "%" : "mm"
