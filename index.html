@@ -156,7 +156,9 @@
                         >
                           <div class="inline-flex items-center">
                             <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group">
-                              <input type="checkbox"
+                              <input
+                                id="rainfall"
+                                type="checkbox"
                                 class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
                                 id="check-vertical-list-group" />
                               <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -184,7 +186,9 @@
                         >
                           <div class="inline-flex items-center">
                             <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group2">
-                              <input type="checkbox"
+                              <input 
+                                id="humidity"
+                                type="checkbox"
                                 class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
                                 id="check-vertical-list-group2" />
                               <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -212,7 +216,9 @@
                         >
                           <div class="inline-flex items-center">
                             <label class="flex items-center cursor-pointer relative" for="check-vertical-list-group3">
-                              <input type="checkbox"
+                              <input
+                                id="airTemp"
+                                type="checkbox"
                                 class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
                                 id="check-vertical-list-group3" />
                               <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -235,7 +241,7 @@
 
                   <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <span class="sm:ml-3">
-                      <button type="button" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      <button type="button" onclick="onSubmit()" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                           <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
                         </svg>
