@@ -4,7 +4,7 @@ import Graphic from "@arcgis/core/Graphic"
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer"
 
 import markers from "./data"
-import "../css/style.css";
+import "./css/style.css";
 
 
 const map = new Map({basemap: "hybrid"})
