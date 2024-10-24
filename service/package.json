@@ -1,0 +1,30 @@
+{
+  "name": "weather.sg",
+  "version": "1.0.0",
+  "description": "Singapore weather data",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinvaan/weather.sg.git"
+  },
+  "keywords": [
+    "Esri",
+    "ArcGIS",
+    "Node.js",
+    "Express",
+    "Javascript"
+  ],
+  "author": "Harish Navnit <harishnavnit@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinvaan/weather.sg/issues"
+  },
+  "homepage": "https://github.com/tinvaan/weather.sg#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
