@@ -4,6 +4,8 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer"
 import Map from "@arcgis/core/Map"
 import MapView from "@arcgis/core/views/MapView"
 
+import { useEffect, useRef } from "react"
+
 
 const route = '/v2/real-time/api/'
 const host = 'https://api-open.data.gov.sg'
@@ -65,17 +67,26 @@ async function draw(points) {
 }
 
 export default function MapArea() {
-  // FIXME: Get the MapView working
+  const mapDiv = useRef(null)
+  useEffect(() => {
+    if (mapDiv.current) {
+      const view = new MapView({
+        container: mapDiv.current,
+        map: map,
+        zoom: 11,
+        center: [103.8666, 1.30105] // longitude, latitude -- {Nicoll Highway}
+      })
+      return () => view && view.destroy()
+    }
+  }, [])
 
-  // return new MapView({
-  //   container: "viewDiv",
-  //   map: map,
-  //   zoom: 11,
-  //   center: [103.8666, 1.30105] // longitude, latitude -- {Nicoll Highway}  
-  // })
   return (
     <>
-      <h1>Hello world!</h1>
+      <div
+        ref={mapDiv}
+        className="mapDiv"
+        style={{height: '100vh', width: "100%"}}
+      />
     </>
   )
 }
