@@ -62,7 +62,8 @@ export async function populate(airTemp, humidity, rainfall) {
     return points
 }
 
-export async function onSubmit() {
+window.onSubmit = async function onSubmit() {
+    console.log("populating map ...")
     const points = await populate(
         document.getElementById('airTemp'),
         document.getElementById('humidity'),
@@ -71,7 +72,6 @@ export async function onSubmit() {
     await draw(points)
 }
 
-window.onSubmit = onSubmit
 export default new MapView({
     container: "viewDiv",
     map: map,
