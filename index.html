@@ -8,11 +8,10 @@
     <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
   </head>
   <body>
-    <!-- Reference: https://play.tailwindcss.com/MdY5WoOq5w -->
-    <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-    
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
+          <div id="viewDiv"></div>
+
           <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <div class="pointer-events-auto relative w-screen max-w-md">
     
@@ -252,7 +251,6 @@
       </div>
     </div>
 
-    <div id="viewDiv"></div>
     <script type="module" src="./app/js/map.js"></script>
   </body>
 </html>
