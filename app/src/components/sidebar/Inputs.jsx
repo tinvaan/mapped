@@ -1,4 +1,7 @@
 
+import { draw, populate } from "../Maps"
+
+
 export function ConfigSubmit() {
   return (
     <>
@@ -7,8 +10,14 @@ export function ConfigSubmit() {
           <button
             type="button"
             className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={() => {
-              // TODO
+            onClick={async () => {
+              console.log("Button click!")
+              const points = await populate(
+                document.getElementById('airTemp'),
+                document.getElementById('humidity'),
+                document.getElementById('rainfall')
+              )
+              await draw(points)
             }}
           >
             <svg className="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">

@@ -14,10 +14,11 @@ const map = new Map({basemap: "hybrid"})
 const graphicsLayer = new GraphicsLayer()
 
 
-async function populate(property) {
+async function transform(property) {
   const transformed = []
+  const supported = ['air-temperature', 'rainfall', 'relative-humidity']
 
-  if (property === 'rainfall' || property === 'relative-humidity') {
+  if (supported.find((p) => p === property) !== undefined) {
       let rs = await fetch(host + route + property)
       rs = await rs.json()
 
@@ -38,7 +39,29 @@ async function populate(property) {
   return transformed
 }
 
-async function draw(points) {
+export async function populate(airTemp, humidity, rainfall) {
+  const points = []
+  let ats, hmd, rfall
+
+  if (airTemp) {
+      ats = await transform('air-temperature')
+  }
+
+  if (humidity) {
+      hmd = await transform('relative-humidity')
+  }
+
+  if (rainfall) {
+      rfall = await transform('rainfall')
+  }
+
+  points.push(...ats)
+  points.push(...hmd)
+  points.push(...rfall)
+  return points
+}
+
+export async function draw(points) {
   for (let point of points) {
     graphicsLayer.add(new Graphic({
       geometry: {
