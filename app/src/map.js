@@ -10,7 +10,7 @@ import "./css/style.css";
 const map = new Map({basemap: "hybrid"})
 const graphicsLayer = new GraphicsLayer()
 
-async function draw(points) {
+export async function draw(points) {
     // const points = await markers.populate('rainfall')
 
     for (let point of points) {
